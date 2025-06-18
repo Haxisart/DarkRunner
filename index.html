@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Runner: A Bird's Nightmare</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-info">
+        <span>Score: <span id="score">0</span></span>
+        <span>High Score: <span id="highScore">0</span></span>
+    </div>
+    <div class="background-layer-container">
+        <!-- Background elements will be drawn on canvas, but this div holds the overall z-index -->
+    </div>
+    <canvas id="gameCanvas"></canvas>
+    <div class="message-box" id="messageBox">
+        <p id="messageText"></p>
+        <button id="restartButton">Restart Game</button>
+    </div>
+    <div class="power-up-indicator" id="powerUpIndicator"></div>
+
+    <script src="game.js"></script>
+</body>
+</html>

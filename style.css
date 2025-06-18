@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Creepster&display=swap'); /* Added Creepster for scary titles/messages */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden; /* Hide scrollbars */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #050010; /* Extremely dark, almost black with a hint of deep blue/purple */
+            color: #e0e0e0;
+            position: relative;
+        }
+
+        canvas {
+            background-color: #080015; /* Darker, slightly purple-blue for game area */
+            display: block;
+            border: 4px solid #800000; /* Deep, ominous red border */
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.7); /* Stronger red glowing shadow */
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 12px;
+            position: relative;
+            z-index: 1; /* Ensure canvas is above background layers */
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bat"><path d="M12 2L3 12h18L12 2zM3 12v6a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-6L12 2z"></path><path d="M16 12l2 2-2 2"></path><path d="M8 12l-2 2 2 2"></path></svg>') 15 15, auto; /* Custom bat-wing cursor */
+            transition: filter 0.5s ease-out; /* For slow motion effect */
+        }
+        canvas.slow-motion {
+            filter: grayscale(80%) hue-rotate(200deg) brightness(80%); /* Eerie blue tint, desaturated */
+        }
+        canvas.destroy-flash {
+            filter: brightness(200%) saturate(150%); /* Bright flash */
+        }
+
+
+        .background-layer-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0; /* Behind canvas */
+        }
+
+        .game-info {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            font-size: 1.5em; /* Larger font */
+            font-family: 'Creepster', cursive; /* Scary font */
+            color: #ff0000; /* Bright red text */
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 25px;
+            border-radius: 10px;
+            border: 2px solid #a00000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(40, 0, 0, 0.95); /* Even darker, more opaque red */
+            backdrop-filter: blur(5px); /* Soft blur behind */
+            border: 4px solid #ff0000;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.9);
+            text-align: center;
+            z-index: 100;
+            display: none; /* Hidden by default */
+            color: #ffffff;
+            font-size: 1.8em;
+            line-height: 1.6;
+            animation: pulse-red 1.5s infinite alternate;
+            font-family: 'Creepster', cursive;
+        }
+
+        .message-box button {
+            background-color: #ff2222;
+            color: white;
+            border: 2px solid #800000;
+            padding: 15px 30px;
+            margin-top: 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .message-box button:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6);
+        }
+
+        .power-up-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ee00; /* Vibrant green for active power-up */
+            color: #00ff00;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-family: 'Creepster', cursive;
+            display: none;
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        @keyframes pulse-red {
+            from { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+            to { box-shadow: 0 0 50px rgba(255, 0, 0, 1); }
+        }
+
+        .glitch {
+            animation: glitch-effect 0.08s infinite alternate; /* Faster glitch */
+        }
+
+        @keyframes glitch-effect {
+            0% { transform: translate(0); filter: hue-rotate(0deg); }
+            20% { transform: translate(-3px, 3px); filter: hue-rotate(10deg); }
+            40% { transform: translate(-3px, -3px); filter: hue-rotate(20deg); }
+            60% { transform: translate(3px, 3px); filter: hue-rotate(30deg); }
+            80% { transform: translate(3px, -3px); filter: hue-rotate(40deg); }
+            100% { transform: translate(0); filter: hue-rotate(0deg); }
+        }
